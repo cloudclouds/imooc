@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.imooc.bean.Message;
-import com.imooc.service.ListService;
+import com.imooc.service.QueryService;
 import com.imooc.service.MaintainService;
 
 public class DeleteBatchServlet extends HttpServlet {
