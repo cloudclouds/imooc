@@ -24,14 +24,13 @@
 <mapper namespace="Command">
 
   <resultMap type="com.imooc.bean.Command" id="CommandResult">
-    <id column="ID" jdbcType="INTEGER" property="id"/>
+    <id column="C_ID" jdbcType="INTEGER" property="id"/>
     <result column="NAME" jdbcType="VARCHAR" property="name"/>
     <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"/>
     <collection property="contentList" resultMap="CommandContent.CommandContentResult"></collection>
   </resultMap>
 
-<select id="">
-  select a.id,name,description,b.id,content,command_id from command a  join command_content b on a.id=b.command_id; 
+<select id="queryCommand"  parameterType="com.imooc.bean.Command" resultMap="CommandResult">
+  select a.id as C_ID,name,description,b.id,content,command_id from command a left join command_content b on a.id=b.command_id where name=#{name}; 
 </select>
-  
 </mapper>
