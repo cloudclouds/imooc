@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.imooc.bean.Command;
+import com.imooc.bean.CommandContent;
 import com.imooc.bean.Message;
 import com.imooc.service.QueryService;
 
@@ -23,23 +24,20 @@ import com.imooc.service.QueryService;
  * 
  */
 @SuppressWarnings("serial")
-public class ListServlet extends  HttpServlet{
+public class EditContentViewServlet extends  HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 			req.setCharacterEncoding("utf-8");
 			//指令名称
-			String name=req.getParameter("name");
-			String description=req.getParameter("description");
-			System.out.println("name:"+name);
-			System.out.println("desc:"+description);
-			QueryService listService=new QueryService();
+			String id=req.getParameter("id");
+			QueryService queryService=new QueryService();
 			//查询消息列表并传给页面
-			List<Command> commandList=listService.queryMesageList(name, description);
-			req.setAttribute("commandList",commandList);
+			CommandContent commandContent=queryService.queryContentById(id);
+			req.setAttribute("content",commandContent);
 			//跳转
-		    req.getRequestDispatcher("/WEB-INF/jsp/back/list.jsp").forward(req, resp);
+		    req.getRequestDispatcher("/WEB-INF/jsp/back/editContent.jsp").forward(req, resp);
 	}
 
 	@Override

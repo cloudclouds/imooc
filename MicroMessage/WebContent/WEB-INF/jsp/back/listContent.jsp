@@ -24,11 +24,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<tr>
 								<td width="90" align="right">指令名称：</td>
 								<td>
-									<input type="text"  name="command" class="allInput" value="${command} "/>
+									<input type="text"  name="command" class="allInput"/>
 								</td>
 								<td width="90" align="right">描述：</td>
 								<td>
-									<input type="text" name="description"  class="allInput" value="${description} "/>
+									<input type="text" name="description"  class="allInput""/>
 								</td>
 	                            <td width="85" align="right"><input type="submit" class="tabSub" value="查 询" /></td>
 	       					</tr>
@@ -41,19 +41,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								    <th><input type="checkbox" id="all" onclick="#"/></th>
 								    <th>序号</th>
 								    <th>指令</th>
-								    <th>描述</th>
+								    <th>内容</th>
 								    <th>操作</th>
 								</tr>
-								<c:forEach items="${commandList}"  var="command" varStatus="status">
+								<c:forEach items="${command.contentList}"  var="content" varStatus="status">
                                    <tr  <c:if test="${status.index%2!=0}">style="background-color:#ECF6EE;"</c:if>>
-									<td><input type="checkbox"  name="id" value="${command.id}"/></td>
+									<td><input type="checkbox"  name="id" value="${commandContent.id}"/></td>
 									<td>${ status.index+1}</td>
 									<td>${command.name}</td>
-									<td>${command.description}</td>
+									<td>${content.content}</td>
 									<td>
-										<a href="#">修改</a>&nbsp;&nbsp;&nbsp;
-										<a href="${basePath}DeleteOneServlet.action?id=${command.id}">删除</a>
-									    <a href="${basePath}ListContent.action?id=${command.id}">查看</a>
+										<a href="${basePath}EditContentView.action?id=${content.id}">修改</a>&nbsp;&nbsp;&nbsp;
+										<a href="${basePath}DeleteOneServlet.action?id=${content.id}">删除</a>
 									</td>
 									</tr>
 								</c:forEach>

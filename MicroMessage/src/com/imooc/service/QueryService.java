@@ -6,6 +6,7 @@ import java.util.Random;
 import com.imooc.bean.Command;
 import com.imooc.bean.CommandContent;
 import com.imooc.bean.Message;
+import com.imooc.dao.CommandContentDao;
 import com.imooc.dao.CommandDao;
 import com.imooc.dao.MessageDao;
 import com.imooc.util.Iconst;
@@ -18,10 +19,12 @@ import com.imooc.util.Iconst;
  */
 public class QueryService {
 	
-	  public List<Message> queryMesageList(String command,String description)
+	  public List<Command> queryMesageList(String name,String description)
 	  {
-		  MessageDao messageDao=new MessageDao();
-		 return messageDao.queryMesageList(command, description);
+//		  MessageDao messageDao=new MessageDao();
+//		 return messageDao.queryMesageList(command, description);
+		  CommandDao commandDao=new CommandDao();
+		  return commandDao.queryCommandList(name, description);
 	  }
 	  
 	  /**
@@ -58,4 +61,27 @@ public class QueryService {
 	      }
 	      else return Iconst.NO_MATCHING_CONTENT;
 	  }
+	  /*
+	   * 根据指令id查找指令
+	   */
+	  public Command queryByCommandId(String id)
+	  {
+		  CommandDao commandDao=new CommandDao();
+		  if(id!=null&&id.trim()!="")
+		  {
+		     return commandDao.queryByCommandId(Integer.valueOf(id));
+		  }
+		  return null;
+	  }
+	  
+	  public CommandContent queryContentById(String id)
+	  {
+		  CommandContentDao commandContentDao=new CommandContentDao();
+		  if(id!=null&&id.trim()!="")
+		  {
+		     return commandContentDao.queryContentById(Integer.valueOf(id));
+		  }
+		  return null;
+	  }
 }
+

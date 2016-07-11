@@ -3,6 +3,9 @@ package com.imooc.dao;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -47,5 +50,21 @@ public class MessageDaoTest {
 				  if(sqlSession!=null)   sqlSession.close();
 			  }
 	 }
-	
+
+	@Test
+	public void test()
+	{
+		try
+		{
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://123.206.62.205/smart?characterEncoding=utf-8";
+			Connection conn=DriverManager.getConnection(url);
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }

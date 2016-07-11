@@ -31,6 +31,18 @@
   </resultMap>
 
 <select id="queryCommand"  parameterType="com.imooc.bean.Command" resultMap="CommandResult">
-  select a.id as C_ID,name,description,b.id,content,command_id from command a left join command_content b on a.id=b.command_id where name=#{name}; 
+  select a.id as C_ID,name,description,b.id,content,command_id from command a left join command_content b on a.id=b.command_id
+   <where>
+    <if test="name!=null and !&quot;&quot;.equals(name.trim())">
+     and  name=#{name} 
+    </if>
+    <if test="description!=null and !&quot;&quot;.equals(description.trim())">
+    and description like  '%' #{description} '%'
+    </if>
+    </where>
+</select>
+<select id="queryByCommandId"  parameterType="Integer" resultMap="CommandResult">
+  select a.id as C_ID,name,description,b.id,content,command_id from command a left join command_content b on a.id=b.command_id
+ where a.id=#{_parameter}
 </select>
 </mapper>

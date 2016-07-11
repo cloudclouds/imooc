@@ -34,4 +34,22 @@ public class CommandDao {
 	  }
 	  return commandList;
     }
+  
+  public Command queryByCommandId(int id)
+  {
+	  SqlSession sqlSession=null;
+	  DBAccess dbAccess=new DBAccess();
+	  Command command=new Command();
+	  try {
+		sqlSession= dbAccess.getSqlSession();
+		command=sqlSession.selectOne("Command.queryByCommandId", id);
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	  finally
+	  {
+		  if(sqlSession!=null)   sqlSession.close();
+	  }
+	  return command;
+  }
 }

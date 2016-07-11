@@ -25,8 +25,11 @@
   <resultMap type="com.imooc.bean.CommandContent" id="CommandContentResult">
     <id column="ID" jdbcType="INTEGER" property="id"/>
     <result column="CONTENT" jdbcType="VARCHAR" property="content"/>
-    <result column="COMMAND_ID" jdbcType="VARCHAR" property="commandId"/>
+    <association property="command" resultMap="Command.CommandResult"/>
   </resultMap>
   
+  <select id="queryContentById" parameterType="int"  resultMap="CommandContentResult">
+    select a.id,content,b.id as C_ID,b.name,description from command_content a inner join command  b on a.command_id=b.id where  a.id=#{_parameter}
+  </select>
   
 </mapper>

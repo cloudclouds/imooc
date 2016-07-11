@@ -52,4 +52,22 @@
 		<servlet-name>AutoReplyServlet</servlet-name>
 		<url-pattern>/AutoReplyServlet.action</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+	<servlet-name>ListContentServlet</servlet-name>
+    <servlet-class>com.imooc.servlet.ListContentServlet</servlet-class>
+    </servlet>
+	<servlet-mapping>
+		<servlet-name>ListContentServlet</servlet-name>
+		<url-pattern>/ListContent.action</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+	<servlet-name>EditContentViewServlet</servlet-name>
+    <servlet-class>com.imooc.servlet.EditContentViewServlet</servlet-class>
+    </servlet>
+	<servlet-mapping>
+		<servlet-name>EditContentViewServlet</servlet-name>
+		<url-pattern>/EditContentView.action</url-pattern>
+	</servlet-mapping>
 </web-app>

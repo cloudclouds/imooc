@@ -23,23 +23,20 @@ import com.imooc.service.QueryService;
  * 
  */
 @SuppressWarnings("serial")
-public class ListServlet extends  HttpServlet{
+public class ListContentServlet extends  HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 			req.setCharacterEncoding("utf-8");
 			//指令名称
-			String name=req.getParameter("name");
-			String description=req.getParameter("description");
-			System.out.println("name:"+name);
-			System.out.println("desc:"+description);
+			String id=req.getParameter("id");
 			QueryService listService=new QueryService();
 			//查询消息列表并传给页面
-			List<Command> commandList=listService.queryMesageList(name, description);
-			req.setAttribute("commandList",commandList);
+			Command command=listService.queryByCommandId(id);
+			req.setAttribute("command",command);
 			//跳转
-		    req.getRequestDispatcher("/WEB-INF/jsp/back/list.jsp").forward(req, resp);
+		    req.getRequestDispatcher("/WEB-INF/jsp/back/listContent.jsp").forward(req, resp);
 	}
 
 	@Override

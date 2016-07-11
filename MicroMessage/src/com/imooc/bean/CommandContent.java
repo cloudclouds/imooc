@@ -3,7 +3,7 @@ package com.imooc.bean;
 public class CommandContent {
   private String id;
   private String content;
-  private String commandId;
+  private Command command;
 public String getId() {
 	return id;
 }
@@ -16,11 +16,11 @@ public String getContent() {
 public void setContent(String content) {
 	this.content = content;
 }
-public String getCommandId() {
-	return commandId;
+public Command getCommand() {
+	return command;
 }
-public void setCommandId(String commandId) {
-	this.commandId = commandId;
+public void setCommand(Command command) {
+	this.command = command;
 }
   
 }
